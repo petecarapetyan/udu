@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "strict": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable"
+    ],
+    "outDir": ".tsc"
+  },
+  "include": ["src"]
+}
