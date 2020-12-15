@@ -3,7 +3,7 @@ Aggregation of CLI routines for various development processes
 
 # For any/all runs within:
 
-- runs always start with `tsc && ./.tsc/run/my-file.js`
+- runs always start with `tsc && ./.tsc/run/my-file.js` where `my-file.js` contains your yargs scripts
 - if new run file (my-file.ts) then first `./nufile.sh` to `chmod a+x ...` as reqd
 - common code shared between runs goes in `src/util/common.ts`
 - all objects typed via `src/types.ts`
@@ -17,6 +17,7 @@ Aggregation of CLI routines for various development processes
 ### Current Status of Lorem Ipsum:
 
 - works plenty good enough to start theming sites
+- some GenLoremSpec configs are currently ignored see below
 - plenty of unfinished features such as:
    - implementation of multi-word titles
    - proper case where appropriate
