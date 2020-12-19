@@ -4,14 +4,36 @@ const ncp = require("ncp").ncp;
 const fs = require("fs");
 const rimraf = require("rimraf")
 
-const copy = (dataCopyDir: string, targetDataDir: string) => {
-  ncp(dataCopyDir, targetDataDir, function(err) {
+const copy = (copyDir: string, targetDir: string) => {
+  rimraf.sync(targetDir)
+  ncp(copyDir, targetDir, function(err) {
     if (err) {
-      throw err;
+      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`
     }
   });
 };
 
+const cleanAndMove = (copyDir: string, targetDir: string) => {
+  rimraf.sync(targetDir)
+  ncp(copyDir, targetDir, function(err) {
+    if (err) {
+      console.log(err)
+      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`
+    }else{
+      rimraf.sync(copyDir)
+    }
+  });
+};
+
+/* TODO REFACTORING:
+
+- utility file functions move up out to utility folder
+
+- lots of problems in this code not using promises properly and mixing sync and async
+
+- lots of opportunity such as abstracting out cleanAndMove type intentions
+
+*/
 export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
   console.log("SWAPPING VIA", themeSwapSpec);
 
@@ -89,8 +111,10 @@ export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
     }
   } else {
     console.log("BACK FROM ",`${themeSwapSpec.targetDir}/docs`, "INTO", `../rckt-theme-${themeSwapSpec.theme}/docs` )
-    copy(targetAssetDir, assetCopyDir);
-    copy(targetDataDir, dataCopyDir);
-    copy(targetAssetDir, includeCopyDir);
+    cleanAndMove(targetAssetDir, assetCopyDir);
+    cleanAndMove(targetDataDir, dataCopyDir);
+    cleanAndMove(targetIncludesDir, includeCopyDir);
   }
+
+  
 };
