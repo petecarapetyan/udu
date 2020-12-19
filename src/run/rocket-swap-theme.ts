@@ -19,13 +19,6 @@ fs.access(sourceDir, fs.constants.F_OK, (err) => {
   }
 });
 
-const reply = `
-YOUR INPUTS AND/OR DEFAULTS:
--d = ${argv.d} - target directory
--t = ${argv.t} - theme
-`;
-console.log(reply);
-
 const themeSwapSpec: ThemeSwapSpec = {
   targetDir: argv.d,
   theme: argv.t,
@@ -34,15 +27,3 @@ const themeSwapSpec: ThemeSwapSpec = {
 };
 
 swap(themeSwapSpec);
-
-// const genLoremSpec: GenLoremSpec = {
-//     targetDir: argv.d,
-//     wordCount: argv.w,
-//     topMenuCount: argv.t,
-//     folderMax: argv.f,
-//     pageMax: argv.p,
-//     sectionMax: argv.s,
-//     paragraphMax: argv.g,
-// }
-
-// gen(genLoremSpec)

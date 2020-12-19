@@ -13,7 +13,7 @@ const copy = (dataCopyDir: string, targetDataDir: string) => {
 };
 
 export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
-  console.log(themeSwapSpec);
+  console.log("SWAPPING VIA", themeSwapSpec);
 
   const sourceDir = themeSwapSpec.new
     ? `${themeSwapSpec.targetDir}/docs`
@@ -61,12 +61,12 @@ export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
         if (!err) throw `${targetIncludesDir} ALREADY EXISTS!`;
       });
     }else{
-      console.log("deleting")
+      console.log("DELETING", targetAssetDir, targetDataDir, targetIncludesDir)
       rimraf.sync(targetAssetDir)
       rimraf.sync(targetDataDir)
       rimraf.sync(targetIncludesDir)
     }
-    console.log("copying", dataCopyDir, targetDataDir)
+    console.log("COPYING", dataCopyDir, assetCopyDir, includeCopyDir)
     copy(dataCopyDir, targetDataDir);
     copy(includeCopyDir, targetIncludesDir);
     copy(assetCopyDir, targetAssetDir);
@@ -88,7 +88,7 @@ export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
       copy(assetCopyDir, newTargetAssetDir);
     }
   } else {
-    console.log("back",targetAssetDir, assetCopyDir)
+    console.log("BACK FROM ",`${themeSwapSpec.targetDir}/docs`, "INTO", `../rckt-theme-${themeSwapSpec.theme}/docs` )
     copy(targetAssetDir, assetCopyDir);
     copy(targetDataDir, dataCopyDir);
     copy(targetAssetDir, includeCopyDir);

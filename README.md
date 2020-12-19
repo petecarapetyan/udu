@@ -38,15 +38,25 @@ Your fall-back workaround which you will need to know and understand to avoid da
 
 Copies a `yada` theme to and then back from any rocket project into a `rckt-theme-yada` project.
 
+### Assumptions that might not be obvious
+
+- `df-cli` and rocket projects and rocket theme projects are all in the same folder as siblings
+- rocket themes are all created with this program and thus named `rckt-theme-blah` where `blah` is the theme name
+- The author of any rocket project will wish to swap out one or more different themes to try them out on this or other rocket projects.
+- The risks of using and mis-using this program are worth the benefit of being able to move quickly and nimbly through various themes.
+- YMMV and some of the commands below may produce incorrect messages and/or results. Confirm manually.
+
 ### Basic commands
 
 Given that you are working on a rocket project of `jeren` and swapping out a couple of themes `nyt` and `next`
 
 The -n "New" command assumes that `jeren` has already been run with the default rocket theme once, to populate `docs/_merged_assets` etc.
 
-- `tsc && ./.tsc/run/theme-swap.js -d ../jeren -t nyt -n` creates a new `nyt` theme from `docs/_merged_assets` etc.
-- `tsc && ./.tsc/run/theme-swap.js -d ../jeren -t nyt -b` writes changes from the `nyt` theme you have been working on back to  `rckt-theme-nyt/docs`
-- `tsc && ./.tsc/run/theme-swap.js -d ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
+As a safety mechanism, new command will not run unless you first blow away `_assets` `_data` & `_includes` from your `rocket/docs` folder.
+
+- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t nyt -n` creates a new `nyt` theme from `jeren/docs/_merged_assets` etc.
+- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t nyt -b` writes changes from the `nyt` theme you have been working on back to  `rckt-theme-nyt/docs`
+- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
 
 So obviously, if you run a swap _**without running the -b or 'back' command first**_, you're going to _**lose any unsaved changes**_ to whatever theme is currently loaded.
 
