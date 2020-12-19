@@ -7,3 +7,12 @@ export interface GenLoremSpec {
   sectionMax: number;
   paragraphMax: number;
 }
+
+export interface ThemeSwapSpec {
+  targetDir: string;
+  theme: string;
+  new: boolean;
+  back: boolean;
+}
+
+
