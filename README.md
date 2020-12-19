@@ -52,14 +52,14 @@ Given that you are working on a rocket project of `jeren` and swapping out a cou
 
 The -n "New" command assumes that `jeren` has already been run with the default rocket theme once, to populate `docs/_merged_assets` etc.
 
-As a safety mechanism, the -b back command will clear `_assets` `_data` & `_includes` from your `rocket/docs` folder.
-
 - `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t nyt -n` creates a new `nyt` theme from `jeren/docs/_merged_assets` etc.
 - `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t nyt -b` writes changes from the `nyt` theme you have been working on back to  `rckt-theme-nyt/docs`
 - `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
 - `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
 
-So obviously, if you run a swap _**without running the -b or 'back' command first**_, you're going to _**lose any unsaved changes**_ to whatever theme is currently loaded.
+As a safety mechanism, the -b back command will clear `_assets` `_data` & `_includes` from your `rocket/docs` folder. 
+
+This program won't run a -n to create, or a swap (without -b or -n) without either running the -b first, or alternately, manually deleting the `_assets` etc directories.
 
 ## Other
 

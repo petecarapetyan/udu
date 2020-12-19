@@ -2,25 +2,25 @@ import { ThemeSwapSpec } from "../types";
 
 const ncp = require("ncp").ncp;
 const fs = require("fs");
-const rimraf = require("rimraf")
+const rimraf = require("rimraf");
 
 const copy = (copyDir: string, targetDir: string) => {
-  rimraf.sync(targetDir)
+  rimraf.sync(targetDir);
   ncp(copyDir, targetDir, function(err) {
     if (err) {
-      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`
+      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`;
     }
   });
 };
 
 const cleanAndMove = (copyDir: string, targetDir: string) => {
-  rimraf.sync(targetDir)
+  rimraf.sync(targetDir);
   ncp(copyDir, targetDir, function(err) {
     if (err) {
-      console.log(err)
-      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`
-    }else{
-      rimraf.sync(copyDir)
+      console.log(err);
+      throw `UNABLE TO COPY ${copyDir} TO ${targetDir} ARE YOU SURE IT EXISTS?`;
+    } else {
+      rimraf.sync(copyDir);
     }
   });
 };
@@ -70,28 +70,28 @@ export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
   const targetDataDir = `${themeSwapSpec.targetDir}/docs/_data`;
 
   if (!themeSwapSpec.back) {
-    if (themeSwapSpec.new) {
-      fs.access(targetAssetDir, fs.constants.F_OK, (err) => {
-        if (!err) throw `${targetAssetDir} ALREADY EXISTS!`;
-      });
-
-      fs.access(targetDataDir, fs.constants.F_OK, (err) => {
-        if (!err) throw `${targetDataDir} ALREADY EXISTS!`;
-      });
-
-      fs.access(targetIncludesDir, fs.constants.F_OK, (err) => {
-        if (!err) throw `${targetIncludesDir} ALREADY EXISTS!`;
-      });
-    }else{
-      console.log("DELETING", targetAssetDir, targetDataDir, targetIncludesDir)
-      rimraf.sync(targetAssetDir)
-      rimraf.sync(targetDataDir)
-      rimraf.sync(targetIncludesDir)
-    }
-    console.log("COPYING", dataCopyDir, assetCopyDir, includeCopyDir)
-    copy(dataCopyDir, targetDataDir);
-    copy(includeCopyDir, targetIncludesDir);
-    copy(assetCopyDir, targetAssetDir);
+    fs.access(targetAssetDir, fs.constants.F_OK, (err) => {
+      if (!err) {
+        throw `${targetAssetDir} ALREADY EXISTS!`
+      }else{
+        copy(assetCopyDir, targetAssetDir);
+      }
+    });
+    fs.access(targetDataDir, fs.constants.F_OK, (err) => {
+      if (!err) {
+        throw `${targetDataDir} ALREADY EXISTS!`
+      }else{
+        copy(dataCopyDir, targetDataDir);
+      }
+    });
+    fs.access(targetIncludesDir, fs.constants.F_OK, (err) => {
+      if (!err) {
+        throw `${targetIncludesDir} ALREADY EXISTS!`
+      }else{
+        copy(includeCopyDir, targetIncludesDir);
+      }
+    });
+    console.log("COPYING", dataCopyDir, assetCopyDir, includeCopyDir);
     if (themeSwapSpec.new) {
       fs.mkdirSync(
         `../rckt-theme-${themeSwapSpec.theme}/docs`,
@@ -110,11 +110,14 @@ export const swap = async (themeSwapSpec: ThemeSwapSpec) => {
       copy(assetCopyDir, newTargetAssetDir);
     }
   } else {
-    console.log("BACK FROM ",`${themeSwapSpec.targetDir}/docs`, "INTO", `../rckt-theme-${themeSwapSpec.theme}/docs` )
+    console.log(
+      "BACK FROM ",
+      `${themeSwapSpec.targetDir}/docs`,
+      "INTO",
+      `../rckt-theme-${themeSwapSpec.theme}/docs`
+    );
     cleanAndMove(targetAssetDir, assetCopyDir);
     cleanAndMove(targetDataDir, dataCopyDir);
     cleanAndMove(targetIncludesDir, includeCopyDir);
   }
-
-  
 };
