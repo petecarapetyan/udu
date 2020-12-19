@@ -10,7 +10,7 @@ Aggregation of CLI routines for various development processes
 
 ## Creating Lorem Ipsum Content:
 
-- `tsc && ./.tsc/run/rocket-lorem.js -d ../esuyp` to run defaults against sibling `esuyp`
+- `tsc && ./.tsc/run/rocket-lorem.js -f ../esuyp` to run defaults against sibling `esuyp`
 - other options for sizes etc see usage
 - for repeat runs same project, manually delete previous runs
 
@@ -54,9 +54,10 @@ The -n "New" command assumes that `jeren` has already been run with the default 
 
 As a safety mechanism, new command will not run unless you first blow away `_assets` `_data` & `_includes` from your `rocket/docs` folder.
 
-- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t nyt -n` creates a new `nyt` theme from `jeren/docs/_merged_assets` etc.
-- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t nyt -b` writes changes from the `nyt` theme you have been working on back to  `rckt-theme-nyt/docs`
-- `tsc && ./.tsc/run/rocket-swap-theme.js -d ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
+- `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t nyt -n` creates a new `nyt` theme from `jeren/docs/_merged_assets` etc.
+- `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t nyt -b` writes changes from the `nyt` theme you have been working on back to  `rckt-theme-nyt/docs`
+- `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
+- `tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t next` blows away your `nyt` theme from `jeren/docs` without saving it! And then imports a previously written `rckt-theme-next` theme into `jeren/docs`
 
 So obviously, if you run a swap _**without running the -b or 'back' command first**_, you're going to _**lose any unsaved changes**_ to whatever theme is currently loaded.
 
