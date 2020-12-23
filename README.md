@@ -1,20 +1,22 @@
 # df-cli
 Aggregation of CLI routines for various development processes
 
-## For any/all runs within:
+## For any/all runs within
 
 - runs always start with `tsc && ./.tsc/run/my-file.js` where `my-file.js` contains your yargs scripts
 - if new run file (my-file.ts) then first `./nufile.sh` to `chmod a+x ...` as reqd
 - common code shared between runs goes in `src/util/common.ts`
 - all objects typed via `src/types.ts`
 
-## Creating Lorem Ipsum Content:
+## Creating Lorem Ipsum Content
 
-- `tsc && ./.tsc/run/rocket-lorem.js -f ../esuyp` to run defaults against sibling `esuyp`
+- start by cloning from rocket-template
+- watch this 4 minutes for an example https://youtu.be/mzCaSm5xsfE 
+- `tsc && ./.tsc/run/rocket-lorem.js -d ../esuyp` to run defaults against sibling `esuyp`
 - other options for sizes etc see usage
 - for repeat runs same project, manually delete previous runs
 
-### Current Status of Lorem Ipsum:
+### Current Status of Lorem Ipsum
 
 - works plenty good enough to start theming sites
 - some GenLoremSpec configs are currently ignored see below
