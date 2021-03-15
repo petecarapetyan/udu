@@ -10,6 +10,14 @@ export const randomTitle = (wordCount: number) => {
   return rtrn
 };
 
+export const randomNumberFromMaxSkewedUp = (
+  max:number
+) => {
+  const min = max/2;
+  const result = randomFromRangeSkewedUp(max, min)
+  return result;
+}
+
 
 export const randomParagraphs = (max: number, hasSections: boolean):string => {
   const count = randomFromRangeSkewedUp(1, max);

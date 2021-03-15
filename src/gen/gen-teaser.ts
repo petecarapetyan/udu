@@ -1,15 +1,17 @@
 import { GenTeaserSpec } from "../types";
 // import { randomTitle, writeDirIndexMd, writeFileToPath } from "../util/common";
+import { randomNumberFromMaxSkewedUp } from "../util/common"
 
 export const gen = (genTeaserSpec: GenTeaserSpec) => {
 
   console.log("targetDir", genTeaserSpec.targetDir)
-  console.log("titleWords",genTeaserSpec.titleWords)
   console.log("thumbSize", genTeaserSpec.thumbSize)
   console.log("photoWidth", genTeaserSpec.photoWidth)
   console.log("teaserCount", genTeaserSpec.teaserCount)
   console.log("featurePicWidth", genTeaserSpec.featurePicWidth)
   console.log("teaserWords", genTeaserSpec.teaserWords)
+  const titleWordCount = randomNumberFromMaxSkewedUp(genTeaserSpec.titleWords);
+  console.log("titleWords",genTeaserSpec.titleWords, titleWordCount);
   // wordCount: argv.word,
   // topMenuCount: argv.tub,
   // folderMax: argv.fub,
