@@ -8,6 +8,16 @@ export interface GenLoremSpec {
   paragraphMax: number;
 }
 
+export interface GenTeaserSpec {
+  targetDir: string;
+  wordCount: number;
+  topMenuCount: number;
+  folderMax: number;
+  pageMax: number;
+  sectionMax: number;
+  paragraphMax: number;
+}
+
 export interface ThemeSwapSpec {
   targetDir: string;
   theme: string;

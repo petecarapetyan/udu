@@ -48,7 +48,12 @@ Copies a `yada` theme to and then back from any rocket project into a `rckt-them
 - The risks of using and mis-using this program are worth the benefit of being able to move quickly and nimbly through various themes.
 - YMMV and some of the commands below may produce incorrect messages and/or results. Confirm manually.
 
-### Basic commands
+### Basic commands for creating content
+
+- PRE_REQ: yada/docs must already be created
+- `tsc && ./.tsc/run/rocket-lorem.js -f ../yada` creates new content in the `yada/docs` directory
+
+### Basic commands for swapping themes - deprecated???
 
 Given that you are working on a rocket project of `jeren` and swapping out a couple of themes `nyt` and `next`
 
