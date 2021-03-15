@@ -10,12 +10,12 @@ export interface GenLoremSpec {
 
 export interface GenTeaserSpec {
   targetDir: string;
-  wordCount: number;
-  topMenuCount: number;
-  folderMax: number;
-  pageMax: number;
-  sectionMax: number;
-  paragraphMax: number;
+  titleWords: number;
+  thumbSize: number;
+  teaserCount: number;
+  featurePicWidth: number;
+  teaserWords: number;
+  photoWidth: number;
 }
 
 export interface ThemeSwapSpec {

@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import { GenLoremSpec } from '../types';
+import { GenTeaserSpec } from '../types';
 import { gen } from '../gen/gen-teaser'
 const fs = require("fs");
 
 const argv = require('yargs')
-    .usage('Usage: $0 -d [string] -w [num] -t [num] -f [num] -p [num] -s [num] -g [num]')
+    .usage('Usage: $0 -d [string] -titleWords [num] -thumbSize [num] -teaserCount [num] -featurePicWidth [num] -teaserWords [num] -photoWidth [num]')
     .demandOption(['d'])
-    .default('w', 1)
-    .default('t', 3)
-    .default('f', 3)
-    .default('p', 3)
-    .default('s', 7)
-    .default('g', 3)
+    .default('titleWords', 5)
+    .default('thumbSize', 100)
+    .default('teaserCount', 17)
+    .default('featurePicWidth', 500)
+    .default('teaserWords', 35)
+    .default('photoWidth', 700)
     .argv;
 
     fs.access(argv.d, fs.constants.F_OK, (err) => {
@@ -22,23 +22,23 @@ const argv = require('yargs')
 const reply = `
 YOUR INPUTS AND/OR DEFAULTS:
 -d = ${argv.d} - target directory
--word = ${argv.word} - word max = number of words max in a title
--tub = ${argv.tub} - top menu count
--fub = ${argv.fub} - folder max count under top menu
--pub = ${argv.pub} - page max count under folder
--sub = ${argv.sub} - section max count front page
--gub = ${argv.gub} - paragraph word count per teaser
+-titleWords = ${argv.titleWords} - word max = number of words max in a title
+-thumbSize = ${argv.thumbSize} - top menu count
+-teaserCount = ${argv.teaserCount} - number of teasers on front page
+-featurePicWidth = ${argv.featurePicWidth} - width of the feature pic
+-teaserWords = ${argv.teaserWords} - number of words teaser text
+-photoWidth = ${argv.photoWidth} - width of photo in articles
 `
 console.log(reply);
 
-const genLoremSpec: GenLoremSpec = {
+const genTeaserSpec: GenTeaserSpec = {
     targetDir: argv.d,
-    wordCount: argv.word,
-    topMenuCount: argv.tub,
-    folderMax: argv.fub,
-    pageMax: argv.pub,
-    sectionMax: argv.sub,
-    paragraphMax: argv.gub,
+    titleWords: argv.titleWords,
+    thumbSize: argv.thumbSize,
+    teaserCount: argv.teaserCount,
+    featurePicWidth: argv.featurePicWidth,
+    teaserWords: argv.teaserWords,
+    photoWidth: argv.photoWidth,
 }
 
-gen(genLoremSpec)
+gen(genTeaserSpec)

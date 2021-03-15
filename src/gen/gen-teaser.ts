@@ -3,7 +3,13 @@ import { GenTeaserSpec } from "../types";
 
 export const gen = (genTeaserSpec: GenTeaserSpec) => {
 
-   console.log(genTeaserSpec.targetDir)
+  console.log("targetDir", genTeaserSpec.targetDir)
+  console.log("titleWords",genTeaserSpec.titleWords)
+  console.log("thumbSize", genTeaserSpec.thumbSize)
+  console.log("photoWidth", genTeaserSpec.photoWidth)
+  console.log("teaserCount", genTeaserSpec.teaserCount)
+  console.log("featurePicWidth", genTeaserSpec.featurePicWidth)
+  console.log("teaserWords", genTeaserSpec.teaserWords)
   // wordCount: argv.word,
   // topMenuCount: argv.tub,
   // folderMax: argv.fub,
