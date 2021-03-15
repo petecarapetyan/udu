@@ -1,6 +1,6 @@
 import { GenTeaserSpec } from "../types";
 // import { randomTitle, writeDirIndexMd, writeFileToPath } from "../util/common";
-import { randomLoremTitle } from "../util/common"
+import { randomLoremTitle, dirCount } from "../util/common"
 
 export const gen = (genTeaserSpec: GenTeaserSpec) => {
 
@@ -12,6 +12,8 @@ export const gen = (genTeaserSpec: GenTeaserSpec) => {
   console.log("teaserWords", genTeaserSpec.teaserWords)
   const titleWordCount = randomLoremTitle(genTeaserSpec.titleWords);
   console.log("titleWords",genTeaserSpec.titleWords, titleWordCount);
+  const that = dirCount("../..", "df-cli")
+  console.log(that)
   // wordCount: argv.word,
   // topMenuCount: argv.tub,
   // folderMax: argv.fub,

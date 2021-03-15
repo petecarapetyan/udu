@@ -2,6 +2,7 @@ import { GenLoremSpec } from "../types";
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 const random_words = require("random-words");
 const fs = require("fs");
+const path = require('path');
 const jsConvert = require('js-convert-case');
 
 export const randomTitle = (wordCount: number) => {
@@ -9,6 +10,17 @@ export const randomTitle = (wordCount: number) => {
   const rtrn = words.join(" ")
   return rtrn
 };
+
+export const dirCount = (dirPath: string, dirName: string) => {
+  const filePath = path.join(dirPath, dirName)
+  if (!fs.existsSync(filePath)){
+      console.log("no dir ",filePath);
+      return;
+  }
+  const files=fs.readdirSync();
+  console.log(files)
+  return dirPath + 3
+}
 
 export const randomLoremTitle = (maxWordCount: number) => {
   const count = randomNumberFromMaxSkewedUp(maxWordCount);
