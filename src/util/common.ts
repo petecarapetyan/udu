@@ -10,11 +10,24 @@ export const randomTitle = (wordCount: number) => {
   return rtrn
 };
 
+export const randomLoremTitle = (maxWordCount: number) => {
+  const count = randomNumberFromMaxSkewedUp(maxWordCount);
+  const lorem = new LoremIpsum()
+  let title = lorem.generateWords(count)
+  while (title.length < 5){
+    title = lorem.generateWords(count)
+  } 
+  return title
+}
+
 export const randomNumberFromMaxSkewedUp = (
   max:number
 ) => {
-  const min = max/2;
-  const result = randomFromRangeSkewedUp(max, min)
+  const min = (max/2)-1;
+  let result = randomFromRangeSkewedUp(max, min)
+  if(result===0){
+    result=2
+  }
   return result;
 }
 
@@ -33,7 +46,7 @@ export const randomParagraphs = (max: number, hasSections: boolean):string => {
         min: 4,
       }
     });
-    const sectionTitle = hasSections?`## ${randomTitle(1)}\n\n`:''
+    const sectionTitle = hasSections?`## ${randomLoremTitle(2)}\n\n`:''
     rtrn = `${rtrn}\n\n${sectionTitle}${lorem.generateParagraphs(1)}`
   }
   return rtrn;
