@@ -13,7 +13,6 @@ export const randomTitle = (wordCount: number) => {
 
 export const randomPhotoPath = (dir: string) => {
   const filePath = path.join(__dirname, `../../../unsplashed/${dir}`);
-  console.log("ROOT", filePath);
   if (!fs.existsSync(filePath)) {
     throw `FILE PATH ${filePath} DOES NOT EXIST, you furnished ${dir} and the 'unplashed' location was assumed as a pre-req`;
   }
@@ -28,26 +27,23 @@ export const copyRandomFile = (dir: string) => {
   const sourcePath = randomPhotoPath(dir);
   const fileName = path.basename(sourcePath);
   const result = { fileName, sourcePath };
-  console.log("COPIED ALL", result.sourcePath, result.fileName);
   return result;
 };
 
-export const seedPhotoStock = (genTeaserSpec) => {
-  if (!fs.existsSync(path.normalize(genTeaserSpec.targetDir))) {
+export const seedImage = (photoObject, targetDir: string) => {
+  if (!fs.existsSync(path.normalize(targetDir))) {
     throw `FILE PATH ${path.normalize(
-      genTeaserSpec.targetDir
-    )} DOES NOT EXIST, you furnished ${genTeaserSpec.targetDir}`;
+      targetDir
+    )} DOES NOT EXIST, you furnished ${targetDir}`;
   }
   const writePath = `${path.normalize(
-    genTeaserSpec.targetDir
+    targetDir
   )}/docs/_assets/_static/images`;
   fs.mkdir(writePath, { recursive: true }, (err) => {
     if (err) {
       throw `FAILED ${writePath}${err}`;
     }
   });
-  const dir = "raw_landscape";
-  const photoObject = copyRandomFile(dir);
   const fileWritePath = path.join(writePath, photoObject.fileName);
   fs.readFile(photoObject.sourcePath, function (err, data) {
     if (err) throw err;
@@ -55,8 +51,23 @@ export const seedPhotoStock = (genTeaserSpec) => {
         if (err) throw err;
     });
   });
+}
+
+export const imgTag = (dir: string, genTeaserSpec) => {
+  const photoObject = copyRandomFile(dir);
+  seedImage(photoObject, genTeaserSpec.targetDir)
   const img = `<img class="bordered" src="/_merged_assets/_static/images/${photoObject.fileName}" alt="${photoObject.fileName}" />`
   return img;
+}
+
+export const seedThumbStock = (genTeaserSpec) => {
+  const dir = `thumb/${genTeaserSpec.thumbSize}`;
+  return imgTag(dir, genTeaserSpec)
+}
+
+export const seedPhotoStock = (genTeaserSpec) => {
+  const dir = `landscape/${genTeaserSpec.photoWidth}`;
+  return imgTag(dir, genTeaserSpec)
 }
 
 export const randomLoremTitle = (maxWordCount: number) => {
