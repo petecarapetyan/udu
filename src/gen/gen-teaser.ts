@@ -1,6 +1,6 @@
 import { GenTeaserSpec } from "../types";
 // import { randomTitle, writeDirIndexMd, writeFileToPath } from "../util/common";
-import { randomLoremTitle, dirCount } from "../util/common"
+import { randomLoremTitle, seedPhotoStock } from "../util/common"
 
 export const gen = (genTeaserSpec: GenTeaserSpec) => {
 
@@ -12,18 +12,12 @@ export const gen = (genTeaserSpec: GenTeaserSpec) => {
   console.log("teaserWords", genTeaserSpec.teaserWords)
   const titleWordCount = randomLoremTitle(genTeaserSpec.titleWords);
   console.log("titleWords",genTeaserSpec.titleWords, titleWordCount);
-  const that = dirCount("../..", "df-cli")
-  console.log(that)
-  // wordCount: argv.word,
-  // topMenuCount: argv.tub,
-  // folderMax: argv.fub,
-  // pageMax: argv.pub,
-  // sectionMax: argv.sub,
-  // paragraphMax: argv.gub,
-  // const indexTitle = genTeaserSpec.targetDir.substr(
-  //   genTeaserSpec.targetDir.lastIndexOf("/"),
-  //   genTeaserSpec.targetDir.length
-  // );
+  console.log("FILE AT ",seedPhotoStock(genTeaserSpec ))
+  const indexTitle = genTeaserSpec.targetDir.substr(
+    genTeaserSpec.targetDir.lastIndexOf("/"),
+    genTeaserSpec.targetDir.length
+  );
+  console.log("WTF",indexTitle)
   // writeFileToPath(
   //   indexTitle,
   //   `${genTeaserSpec.targetDir}/docs/index.md`,
