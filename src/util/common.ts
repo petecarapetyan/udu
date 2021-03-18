@@ -165,13 +165,3 @@ export const writeDirIndexMd = (
   writeFile(`${dirPath}/index.md`, fileContents)
 };
 
-export const writeFileToPath = (
-  title: string,
-  path: string,
-  genLoremSpec: GenLoremSpec,
-  hasSections: boolean
-) => {
-  const fileContents = markupContent(title, genLoremSpec, hasSections)
-  writeFile(path, fileContents)
-};
-
