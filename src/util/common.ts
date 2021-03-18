@@ -101,6 +101,7 @@ export const randomNumberFromMaxSkewedUp = (max: number) => {
 
 export const randomParagraphs = (max: number, hasSections: boolean): string => {
   const count = randomFromRangeSkewedUp(1, max);
+  const photoInsertionPoint = Math.floor(Math.random() * count);
   let rtrn: string = "";
   for (let i = 0; i < count; i++) {
     const lorem = new LoremIpsum({
@@ -114,7 +115,11 @@ export const randomParagraphs = (max: number, hasSections: boolean): string => {
       },
     });
     const sectionTitle = hasSections ? `## ${randomLoremTitle(2)}\n\n` : "";
-    rtrn = `${rtrn}\n\n${sectionTitle}${lorem.generateParagraphs(1)}`;
+    let content = lorem.generateParagraphs(1)
+    if(i===photoInsertionPoint){
+      content = `PHOTO HERE\n\n${content}`
+    }
+    rtrn = `${rtrn}\n\n${sectionTitle}${content}`;
   }
   return rtrn;
 };
