@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { GenTeaserSpec } from '../types';
+import { GenLoremSpec } from '../types';
 import { gen } from '../gen/gen-teaser'
 const fs = require("fs");
 
@@ -31,14 +31,15 @@ YOUR INPUTS AND/OR DEFAULTS:
 `
 console.log(reply);
 
-const genTeaserSpec: GenTeaserSpec = {
+const genLoremSpec: GenLoremSpec = {
     targetDir: argv.d,
-    titleWords: argv.titleWords,
-    thumbSize: argv.thumbSize,
-    teaserCount: argv.teaserCount,
-    featurePicWidth: argv.featurePicWidth,
-    teaserWords: argv.teaserWords,
-    photoWidth: argv.photoWidth,
+    wordCount: argv.w,
+    topMenuCount: argv.t,
+    folderMax: argv.f,
+    pageMax: argv.p,
+    sectionMax: argv.s,
+    paragraphMax: argv.g,
+    photoWidth: argv.photoWidth
 }
 
-gen(genTeaserSpec)
+gen(genLoremSpec)

@@ -6,6 +6,7 @@ export interface GenLoremSpec {
   pageMax: number;
   sectionMax: number;
   paragraphMax: number;
+  photoWidth: number;
 }
 
 export interface GenTeaserSpec {

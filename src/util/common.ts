@@ -99,8 +99,8 @@ export const randomNumberFromMaxSkewedUp = (max: number) => {
   return result;
 };
 
-export const randomParagraphs = (max: number, hasSections: boolean): string => {
-  const count = randomFromRangeSkewedUp(1, max);
+export const randomParagraphs = (genLoremSpec, hasSections: boolean): string => {
+  const count = randomFromRangeSkewedUp(1, genLoremSpec.paragraphMax);
   const photoInsertionPoint = Math.floor(Math.random() * count);
   let rtrn: string = "";
   for (let i = 0; i < count; i++) {
@@ -117,7 +117,7 @@ export const randomParagraphs = (max: number, hasSections: boolean): string => {
     const sectionTitle = hasSections ? `## ${randomLoremTitle(2)}\n\n` : "";
     let content = lorem.generateParagraphs(1)
     if(i===photoInsertionPoint){
-      content = `PHOTO HERE\n\n${content}`
+      content = `${seedPhotoStock(genLoremSpec)}\n\n${content}`
     }
     rtrn = `${rtrn}\n\n${sectionTitle}${content}`;
   }
@@ -132,7 +132,7 @@ export const randomFromRangeSkewedUp = (min: number, max: number) => {
 
 export const markupContent = (title: string, genLoremSpec, hasSections: boolean) => {
   const fileContents = `# ${jsConvert.toSentenceCase(title)}${randomParagraphs(
-    genLoremSpec.paragraphMax,
+    genLoremSpec,
     hasSections
   )}`;
   return fileContents;

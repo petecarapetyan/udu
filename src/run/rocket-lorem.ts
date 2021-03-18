@@ -5,7 +5,7 @@ import { gen } from '../gen/gen-lorem'
 const fs = require("fs");
 
 const argv = require('yargs')
-    .usage('Usage: $0 -d [string] -w [num] -t [num] -f [num] -p [num] -s [num] -g [num]')
+    .usage('Usage: $0 -d [string] -w [num] -t [num] -f [num] -p [num] -s [num] -g [num] -photoWidth [num]')
     .demandOption(['d'])
     .default('w', 1)
     .default('t', 3)
@@ -13,6 +13,7 @@ const argv = require('yargs')
     .default('p', 3)
     .default('s', 7)
     .default('g', 3)
+    .default('photoWidth', 700)
     .argv;
 
     fs.access(argv.d, fs.constants.F_OK, (err) => {
@@ -28,6 +29,7 @@ YOUR INPUTS AND/OR DEFAULTS:
 -p = ${argv.p} - page max count under folder
 -s = ${argv.s} - section max count under folder
 -g = ${argv.g} - paragraph max count under section
+-g = ${argv.photoWidth} - default photo width
 `
 console.log(reply);
 
@@ -39,6 +41,7 @@ const genLoremSpec: GenLoremSpec = {
     pageMax: argv.p,
     sectionMax: argv.s,
     paragraphMax: argv.g,
+    photoWidth: argv.photoWidth
 }
 
 gen(genLoremSpec)
