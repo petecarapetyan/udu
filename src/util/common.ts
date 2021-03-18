@@ -11,6 +11,16 @@ export const randomTitle = (wordCount: number) => {
   return rtrn;
 };
 
+
+export const dash4space = (str: string) => {
+  let val = str;
+  val = val.toLowerCase();
+  const searchRegExp = / /g;
+  const replaceWith = "-";
+  val = val.replace(searchRegExp, replaceWith);
+  return val;
+};
+
 export const randomPhotoPath = (dir: string) => {
   const filePath = path.join(__dirname, `../../../unsplashed/${dir}`);
   if (!fs.existsSync(filePath)) {
@@ -115,26 +125,39 @@ export const randomFromRangeSkewedUp = (min: number, max: number) => {
   return min + addedToMin + 1;
 };
 
+export const markupContent = (title: string, genLoremSpec, hasSections: boolean) => {
+  const fileContents = `# ${jsConvert.toSentenceCase(title)}${randomParagraphs(
+    genLoremSpec.paragraphMax,
+    hasSections
+  )}`;
+  return fileContents;
+}
+
+export const mkdir = (dirPath: string) => {
+  fs.mkdir(dirPath, { recursive: true }, (err) => {
+    if (err) {
+      throw `FAILED ${dirPath}`;
+    }
+  });
+
+}
+export const writeFile = (filePath: string, fileContents: string) => {
+  fs.writeFile(filePath, fileContents, (err) => {
+    if (err) {
+      throw `FAILED FILE WRITE: ${filePath}`;
+    }
+  });
+}
+
 export const writeDirIndexMd = (
   title: string,
   dirPath: string,
   genLoremSpec: GenLoremSpec,
   hasSections: boolean
 ) => {
-  fs.mkdir(dirPath, { recursive: true }, (err) => {
-    if (err) {
-      throw `FAILED ${dirPath}`;
-    }
-  });
-  const fileContents = `# ${jsConvert.toSentenceCase(title)}${randomParagraphs(
-    genLoremSpec.paragraphMax,
-    hasSections
-  )}`;
-  fs.writeFile(`${dirPath}/index.md`, fileContents, (err) => {
-    if (err) {
-      throw `FAILED ${dirPath}/index.md`;
-    }
-  });
+  mkdir(dirPath);
+  const fileContents = markupContent(title, genLoremSpec, hasSections)
+  writeFile(`${dirPath}/index.md`, fileContents)
 };
 
 export const writeFileToPath = (
@@ -143,13 +166,7 @@ export const writeFileToPath = (
   genLoremSpec: GenLoremSpec,
   hasSections: boolean
 ) => {
-  const fileContents = `# ${jsConvert.toSentenceCase(title)}${randomParagraphs(
-    genLoremSpec.paragraphMax,
-    hasSections
-  )}`;
-  fs.writeFile(`${path}`, fileContents, (err) => {
-    if (err) {
-      throw `FAILED ${path}`;
-    }
-  });
+  const fileContents = markupContent(title, genLoremSpec, hasSections)
+  writeFile(path, fileContents)
 };
+
