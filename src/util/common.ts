@@ -4,6 +4,9 @@ const random_words = require("random-words");
 const fs = require("fs");
 const path = require("path");
 const jsConvert = require("js-convert-case");
+export let state = {
+  pages: ["/"]
+}
 
 export const randomTitle = (wordCount: number) => {
   const words = random_words(wordCount);
@@ -144,7 +147,6 @@ export const mkdir = (dirPath: string) => {
       throw `FAILED ${dirPath}`;
     }
   });
-
 }
 export const writeFile = (filePath: string, fileContents: string) => {
   fs.writeFile(filePath, fileContents, (err) => {

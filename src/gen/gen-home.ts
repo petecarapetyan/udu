@@ -1,5 +1,5 @@
 import { GenLoremSpec } from "../types";
-import { writeFile } from "../util/common";
+import { writeFile, state } from "../util/common";
 
 export const writeHomePage = (genLoremSpec: GenLoremSpec) => {
   writeFile(
@@ -9,6 +9,11 @@ export const writeHomePage = (genLoremSpec: GenLoremSpec) => {
 }
 
 export const genHomeContent = (genLoremSpec: GenLoremSpec) => {
+  console.log("THINGS:", state.pages.length)
+  state.pages.push("/buddy")
+  console.log("THINGS:", state.pages.length)
+  state.pages.push("/woood")
+  console.log("THINGS:", state.pages.length)
   return `---
 ${genTopLevel(genLoremSpec)}
 ${genCallToAction(genLoremSpec)}

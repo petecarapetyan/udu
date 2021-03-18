@@ -13,6 +13,5 @@ export const gen = (genLoremSpec: GenLoremSpec) => {
       const folderPath = `${dirPath}/${dash4space(folder)}`
       writeDirIndexMd(folder, folderPath, genLoremSpec, true);
     }
-
   }
 };
