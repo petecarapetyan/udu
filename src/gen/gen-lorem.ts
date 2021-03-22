@@ -3,7 +3,6 @@ import { randomLoremTitle, writeDirIndexMd, dash4space } from "../util/common";
 import { writeHomePage } from "./gen-home";
 
 export const gen = (genLoremSpec: GenLoremSpec) => {
-  writeHomePage(genLoremSpec)
   for (let i = 0; i < genLoremSpec.topMenuCount; i++) {
     const title = randomLoremTitle(2);
     const dirPath = `${genLoremSpec.targetDir}/docs/${dash4space(title)}`;
@@ -14,4 +13,5 @@ export const gen = (genLoremSpec: GenLoremSpec) => {
       writeDirIndexMd(folder, folderPath, genLoremSpec, true);
     }
   }
+  writeHomePage(genLoremSpec)
 };

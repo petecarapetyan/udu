@@ -1,11 +1,14 @@
-import { GenLoremSpec } from "../types";
+import { GenLoremSpec, State } from "../types";
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
 const random_words = require("random-words");
 const fs = require("fs");
 const path = require("path");
 const jsConvert = require("js-convert-case");
-export let state = {
-  pages: ["/"]
+export let state:State = {
+  pages: [],
+  feature: undefined,
+  teasers: [],
+  sections: []
 }
 
 export const randomTitle = (wordCount: number) => {
@@ -148,7 +151,15 @@ export const mkdir = (dirPath: string) => {
     }
   });
 }
+
+
+
+export const persistPath = (filePath: string) => {
+  state.pages.push(filePath.substr(filePath.indexOf("docs/")+4))
+}
+
 export const writeFile = (filePath: string, fileContents: string) => {
+  persistPath(filePath)
   fs.writeFile(filePath, fileContents, (err) => {
     if (err) {
       throw `FAILED FILE WRITE: ${filePath}`;

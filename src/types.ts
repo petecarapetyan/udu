@@ -7,6 +7,8 @@ export interface GenLoremSpec {
   sectionMax: number;
   paragraphMax: number;
   photoWidth: number;
+  teaserCount: number;
+  ctaMax: number;
 }
 
 export interface GenTeaserSpec {
@@ -26,4 +28,16 @@ export interface ThemeSwapSpec {
   back: boolean;
 }
 
+export interface State {
+  pages: string[];
+  feature: undefined|string;
+  teasers: string[];
+  sections: string[];
+}
 
+export interface Teaser {
+  title: string;
+  href: string;
+  img: string;
+  text: string;
+}
