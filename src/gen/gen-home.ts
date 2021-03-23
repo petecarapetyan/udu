@@ -20,7 +20,10 @@ export const defineHomePageState = (genLoremSpec: GenLoremSpec) => {
   const maxTeaserCount = Math.min(genLoremSpec.teaserCount, state.pages.length)
   const featureIndex = Math.floor(Math.random() * maxTeaserCount)
   for (let i = 0; i < maxTeaserCount; i++) {
-    const item = state.pages[i]
+    let item = state.pages[i]
+    if(item.endsWith("index.md")){
+      item = item.substr(0, item.length-8)
+    }
     const isSection:boolean =  (item.match(/\//g)||[]).length === 2
     if(isSection && state.sections.length<genLoremSpec.ctaMax){
       state.sections.push(item)
@@ -44,7 +47,7 @@ ${genTeaserSection(genLoremSpec)}
 ---`
 }
 export const genTopLevel = (genLoremSpec: GenLoremSpec) => {
-  return `title: ${genLoremSpec.targetDir}
+  return `title: Lorem Ipsum!
 layout: layout-home
 slogan: ${randomLoremTitle(12)}`
 }
