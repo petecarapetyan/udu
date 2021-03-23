@@ -16,6 +16,7 @@ const argv = require('yargs')
     .default('photoWidth', 700)
     .default('teaserCount', 17)
     .default('ctaMax', 2)
+    .default('thumbSize', 100)
     .argv;
 
     fs.access(argv.d, fs.constants.F_OK, (err) => {
@@ -34,6 +35,7 @@ YOUR INPUTS AND/OR DEFAULTS:
 -photoWidth = ${argv.photoWidth} - default photo width
 -teaserCount = ${argv.teaserCount} - max number of teasers for this home page
 -ctaMax = ${argv.ctaMax} - maxNumber of cta elements - subset of sections, typically
+-thumbSize = ${argv.thumbSize} - default thumb width
 `
 console.log(reply);
 
@@ -47,7 +49,8 @@ const genLoremSpec: GenLoremSpec = {
     paragraphMax: argv.g,
     photoWidth: argv.photoWidth,
     teaserCount: argv.teaserCount,
-    ctaMax: argv.ctaMax
+    ctaMax: argv.ctaMax,
+    thumbSize: argv.thumbSize
 }
 
 gen(genLoremSpec)

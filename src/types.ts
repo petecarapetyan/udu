@@ -9,6 +9,7 @@ export interface GenLoremSpec {
   photoWidth: number;
   teaserCount: number;
   ctaMax: number;
+  thumbSize: number;
 }
 
 export interface GenTeaserSpec {

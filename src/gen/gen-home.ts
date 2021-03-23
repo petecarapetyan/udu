@@ -1,5 +1,5 @@
 import { GenLoremSpec, Teaser } from "../types";
-import { writeFile, state, randomLoremTitle } from "../util/common";
+import { writeFile, state, randomLoremTitle, randomShorterParagaph, seedThumbStock } from "../util/common";
 const yaml = require('js-yaml');
 
 export const writeHomePage = (genLoremSpec: GenLoremSpec) => {
@@ -57,55 +57,29 @@ export const genCallToAction = (genLoremSpec: GenLoremSpec) => {
     img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />`
 }
 
-const buildTeasers = () => {
+const buildTeasers = (genLoremSpec: GenLoremSpec) => {
   const teasers: Teaser[] = []
   for (const value of Object.values(state.teasers)) {
-    console.log(`PAGEish ${value}`);
     const teaser:Teaser = {
       title: randomLoremTitle(5),
-      text: "blah",
+      text: randomShorterParagaph(),
       href: value,
-      img: "blah",
+      img: seedThumbStock(genLoremSpec)
     }
     teasers.push(teaser)
   }
-  return teasers
+  const teasersObject = {
+    teasers
+  }
+  return teasersObject
 }
 
-export const genTeaserSection = (genLoremSpec: GenLoremSpec) => {
-  // console.log("PAGES==", state.pages)
-  console.log("\nYAML\n",yaml.dump(buildTeasers()))
-  console.log("\n\nJSON\n",JSON.stringify(genLoremSpec))
-  
+export const genTeaserSection = (genLoremSpec: GenLoremSpec) => {  
   return `teasertitle: Why Rocket?
 feature:
   - title: Small
     href: /blah
     img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
     text: No overblown tools or frontend frameworks, add JavaScript and/or Web Components only on pages where needed.
-teasers:
-  - title: Small
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: No overblown tools or frontend frameworks, add JavaScript and/or Web Components only on pages where needed.
-  - title: Pre-Rendered
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: Statically generated content means less javascript to ship and process.
-  - title: Zero Configuration
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: Automatic code splitting, filesystem based routing, and javascript in markdown.
-  - title: Meta Framework
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: 'Build on top of giants like <a href="https://www.11ty.dev/">eleventy</a>, <a href="https://rollupjs.org/">Rollup</a>, and <a href="https://www.modern-web.dev/">Modern Web</a>.'
-  - title: Powerful Default Template
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: Provide content and you are ready to go.
-  - title: Ready for Production
-    href: /blah
-    img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: Optimized for a smaller build size, faster dev compilation and dozens of other improvements.`
+${yaml.dump(buildTeasers(genLoremSpec))}`
 }

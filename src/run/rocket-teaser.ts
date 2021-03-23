@@ -41,7 +41,8 @@ const genLoremSpec: GenLoremSpec = {
     paragraphMax: argv.g,
     photoWidth: argv.photoWidth,
     teaserCount: argv.teaserCount,
-    ctaMax: argv.ctaMax
+    ctaMax: argv.ctaMax,
+    thumbSize: argv.thumbSize
 }
 
 gen(genLoremSpec)

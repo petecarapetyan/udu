@@ -69,21 +69,21 @@ export const seedImage = (photoObject, targetDir: string) => {
   });
 }
 
-export const imgTag = (dir: string, genTeaserSpec) => {
+export const imgTag = (dir: string, genLoremSpec: GenLoremSpec) => {
   const photoObject = copyRandomFile(dir);
-  seedImage(photoObject, genTeaserSpec.targetDir)
+  seedImage(photoObject, genLoremSpec.targetDir)
   const img = `<img class="bordered" src="/_merged_assets/_static/images/${photoObject.fileName}" alt="${photoObject.fileName}" />`
   return img;
 }
 
-export const seedThumbStock = (genTeaserSpec) => {
-  const dir = `thumb/${genTeaserSpec.thumbSize}`;
-  return imgTag(dir, genTeaserSpec)
+export const seedThumbStock = (genLoremSpec: GenLoremSpec) => {
+  const dir = `thumb/${genLoremSpec.thumbSize}`;
+  return imgTag(dir, genLoremSpec)
 }
 
-export const seedPhotoStock = (genTeaserSpec) => {
-  const dir = `landscape/${genTeaserSpec.photoWidth}`;
-  return imgTag(dir, genTeaserSpec)
+export const seedPhotoStock = (genLoremSpec: GenLoremSpec) => {
+  const dir = `landscape/${genLoremSpec.photoWidth}`;
+  return imgTag(dir, genLoremSpec)
 }
 
 export const randomLoremTitle = (maxWordCount: number) => {
@@ -105,23 +105,41 @@ export const randomNumberFromMaxSkewedUp = (max: number) => {
   return result;
 };
 
+export const randomShorterParagaph = () => {
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 3,
+      min: 1,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
+  return lorem.generateParagraphs(1)
+}
+
+export const randomParagaph = () => {
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 10,
+      min: 2,
+    },
+    wordsPerSentence: {
+      max: 16,
+      min: 4,
+    },
+  });
+  return lorem.generateParagraphs(1)
+}
+
 export const randomParagraphs = (genLoremSpec, hasSections: boolean): string => {
   const count = randomFromRangeSkewedUp(1, genLoremSpec.paragraphMax);
   const photoInsertionPoint = Math.floor(Math.random() * count);
   let rtrn: string = "";
   for (let i = 0; i < count; i++) {
-    const lorem = new LoremIpsum({
-      sentencesPerParagraph: {
-        max: 10,
-        min: 2,
-      },
-      wordsPerSentence: {
-        max: 16,
-        min: 4,
-      },
-    });
     const sectionTitle = hasSections ? `## ${randomLoremTitle(2)}\n\n` : "";
-    let content = lorem.generateParagraphs(1)
+    let content = randomParagaph();
     if(i===photoInsertionPoint){
       content = `${seedPhotoStock(genLoremSpec)}\n\n${content}`
     }
