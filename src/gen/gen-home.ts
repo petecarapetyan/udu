@@ -38,6 +38,8 @@ export const genHomeContent = (genLoremSpec: GenLoremSpec) => {
   return `---
 ${genTopLevel(genLoremSpec)}
 ${genCallToAction(genLoremSpec)}
+${genTeaserTitle(genLoremSpec)}
+${genFeature(genLoremSpec)}
 ${genTeaserSection(genLoremSpec)}
 ---`
 }
@@ -74,12 +76,21 @@ const buildTeasers = (genLoremSpec: GenLoremSpec) => {
   return teasersObject
 }
 
-export const genTeaserSection = (genLoremSpec: GenLoremSpec) => {  
-  return `teasertitle: Why Rocket?
-feature:
+
+export const genTeaserTitle = (genLoremSpec: GenLoremSpec) => {  
+  console.log(genLoremSpec.photoWidth)
+  return `teasertitle: Why Rocket?`
+}
+
+export const genFeature = (genLoremSpec: GenLoremSpec) => {  
+  console.log(genLoremSpec.photoWidth)
+  return `feature:
   - title: Small
     href: /blah
     img: <img class="bordered" src="/_merged_assets/_static/images/bulksplash-bagasvg-7VS__QB2vo4.jpg" alt="bulksplash-bagasvg-7VS__QB2vo4.jpg" />
-    text: No overblown tools or frontend frameworks, add JavaScript and/or Web Components only on pages where needed.
-${yaml.dump(buildTeasers(genLoremSpec))}`
+    text: No overblown tools or frontend frameworks, add JavaScript and/or Web Components only on pages where needed.`
+}
+
+export const genTeaserSection = (genLoremSpec: GenLoremSpec) => {  
+  return `${yaml.dump(buildTeasers(genLoremSpec))}`
 }
