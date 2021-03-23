@@ -86,6 +86,12 @@ export const seedPhotoStock = (genLoremSpec: GenLoremSpec) => {
   return imgTag(dir, genLoremSpec)
 }
 
+export const seedFeaturePhoto = (genLoremSpec: GenLoremSpec) => {
+  console.log("SWITCH THIS OUT TO NEW FEATURE PHOTO WIDTH WHEN YOU GET THERE")
+  const dir = `landscape/${genLoremSpec.photoWidth}`;
+  return imgTag(dir, genLoremSpec)
+}
+
 export const randomLoremTitle = (maxWordCount: number) => {
   const count = randomNumberFromMaxSkewedUp(maxWordCount);
   const lorem = new LoremIpsum();

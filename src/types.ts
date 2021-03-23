@@ -36,7 +36,7 @@ export interface State {
   sections: string[];
 }
 
-export interface Teaser {
+export interface HomePageLink {
   title: string;
   href: string;
   img: string;
