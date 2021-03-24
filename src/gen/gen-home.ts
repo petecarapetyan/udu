@@ -95,7 +95,7 @@ const buildTeasers = (genLoremSpec: GenLoremSpec) => {
 
 
 export const genTeaserTitle = () => {  
-  return `teasertitle: ${randomLoremTitle(6)}`
+  return `teaserTitle: ${randomLoremTitle(6)}`
 }
 
 export const genFeature = (genLoremSpec: GenLoremSpec) => {  
