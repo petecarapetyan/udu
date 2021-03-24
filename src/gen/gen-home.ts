@@ -39,14 +39,14 @@ export const defineHomePageState = (genLoremSpec: GenLoremSpec) => {
 export const genHomeContent = (genLoremSpec: GenLoremSpec) => {
   defineHomePageState(genLoremSpec)
   return `---
-${genTopLevel(genLoremSpec)}
+${genTopLevel()}
 ${genCallToAction(genLoremSpec)}
 ${genTeaserTitle()}
 ${genFeature(genLoremSpec)}
 ${genTeaserSection(genLoremSpec)}
 ---`
 }
-export const genTopLevel = (genLoremSpec: GenLoremSpec) => {
+export const genTopLevel = () => {
   return `title: Lorem Ipsum!
 layout: layout-home
 slogan: ${randomLoremTitle(12)}`
