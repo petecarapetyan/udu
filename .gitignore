@@ -1,6 +1,6 @@
 .tsc/
 package-lock.json
-config/serviceAccountKey.json
+src/config/firebase/
 
 # Logs
 logs
