@@ -1,5 +1,6 @@
 .tsc/
 package-lock.json
+config/serviceAccountKey.json
 
 # Logs
 logs
