@@ -12,7 +12,7 @@ const bucket = admin.storage().bucket("betterology-com.appspot.com")
 
 // see https://stackoverflow.com/questions/42956250/get-download-url-from-file-uploaded-with-cloud-functions-for-firebase
 
-export const load = async (sourcePath: string, writePath: string, type:BigIntToLocaleStringOptions) => {
+export const load = async (sourcePath: string, writePath: string, type:string ) => {
   const db = await admin.firestore();
   const photoArray:string[] = photos(sourcePath)
   photoArray.map(async photoPath => {
@@ -43,7 +43,7 @@ export const load = async (sourcePath: string, writePath: string, type:BigIntToL
       type,
       photoArray
     }
-  writeFile(`uploads/PHOTOS_UPLOAD_${writeRecord.dateTime}.txt`, JSON.stringify(writeRecord, null, 2))
+  writeFile(`uploads/PHOTOS_UPLOAD_${writeRecord.dateTime}.json`, JSON.stringify(writeRecord, null, 2))
   
   return `${photoArray.length} photos processed`;
 }
