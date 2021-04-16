@@ -39,6 +39,14 @@ export const randomPhotoPath = (dir: string) => {
   return resultPath;
 };
 
+export const photos = (filePath: string) => {
+  if (!fs.existsSync(filePath)) {
+    throw `FILE PATH ${filePath} DOES NOT EXIST, you furnished ${filePath} and the 'unplashed' location was assumed as a pre-req`;
+  }
+  const files = fs.readdirSync(filePath);
+  return files;
+};
+
 export const copyRandomFile = (dir: string) => {
   const sourcePath = randomPhotoPath(dir);
   const fileName = path.basename(sourcePath);

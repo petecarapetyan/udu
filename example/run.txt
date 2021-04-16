@@ -1,0 +1,4 @@
+tsc && ./.tsc/run/rocket-swap-theme.js -f ../bloah -t foobar -n
+tsc && ./.tsc/run/rocket-swap-theme.js -f ../jeren -t nyt -n
+tsc && ./.tsc/run/rocket-lorem.js -d ../asdf
+tsc && ./.tsc/run/rocket-teaser.js -d ../asdf
