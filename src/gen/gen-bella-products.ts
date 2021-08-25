@@ -3,8 +3,7 @@ const rimraf = require("rimraf");
 
 const writeIndexPage = async (dirPath: string, name: string) => {
   const file = `# ${name}
-
-something`
+something here by Sarah`
   writeFile(
     `${dirPath}/index.md`,
     file
