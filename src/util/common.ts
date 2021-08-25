@@ -176,8 +176,8 @@ export const markupContent = (title: string, genLoremSpec, hasSections: boolean)
   return fileContents;
 }
 
-export const mkdir = (dirPath: string) => {
-  fs.mkdir(dirPath, { recursive: true }, (err) => {
+export const mkdir = async (dirPath: string) => {
+  await fs.mkdir(dirPath, { recursive: true }, (err) => {
     if (err) {
       throw `FAILED ${dirPath}`;
     }

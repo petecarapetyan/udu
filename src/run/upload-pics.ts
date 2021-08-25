@@ -2,6 +2,8 @@
 
 // tsc && ./.tsc/run/upload-pics.js -d /Users/petecarapetyan/work/df/unsplashed/doneImageMagick/portrait/100
 // tsc && ./.tsc/run/upload-pics.js -s ../unsplashed/doneImageMagick/square/500 -d images/square/500 -t jpeg
+// tsc && ./.tsc/run/upload-pics.js -s ../webappwriter/docs/_assets/_static/images -d webappwriter/img -t jpeg
+// tsc && ./.tsc/run/upload-pics.js -s ../../bella/fabrics -d mediaUploaded -t jpeg
 
 import { load } from '../load/load-pics'
 
