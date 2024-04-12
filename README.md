@@ -69,6 +69,8 @@ As a safety mechanism, this program won't run a -n to create, or a swap (without
 
 ## Other
 
+- Name: https://www.wisdomlib.org/definition/udu
+
 ### Helpful references for coding in this project
 
 - https://stackoverflow.com/questions/1880198/how-to-execute-shell-command-in-javascript
